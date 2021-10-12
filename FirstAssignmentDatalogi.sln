@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstAssignmentDatalogi", "FirstAssignmentDatalogi\FirstAssignmentDatalogi.csproj", "{DA5620B5-F9DA-45C2-9852-175DBB266CCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstAssignmentDatalogiTests", "FirstAssignmentDatalogiTests\FirstAssignmentDatalogiTests.csproj", "{89AD9B0B-34FE-487A-92D6-451C48E85333}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA5620B5-F9DA-45C2-9852-175DBB266CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA5620B5-F9DA-45C2-9852-175DBB266CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA5620B5-F9DA-45C2-9852-175DBB266CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA5620B5-F9DA-45C2-9852-175DBB266CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89AD9B0B-34FE-487A-92D6-451C48E85333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89AD9B0B-34FE-487A-92D6-451C48E85333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89AD9B0B-34FE-487A-92D6-451C48E85333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89AD9B0B-34FE-487A-92D6-451C48E85333}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F968439E-DEC3-4E3D-B5EC-387E17244E6F}
+	EndGlobalSection
+EndGlobal
