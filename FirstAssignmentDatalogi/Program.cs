@@ -1,20 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FirstAssignmentDatalogi
 {
-    public class Program
+    public static class Program
     {
-        //Användare ska skicka in valfritt värde                                            OK
-        //Utvärdera som värdet är ett primtal                                               OK
-        //Om det är ett primtal, lägg till i en lista eller liknande datastruktur           OK
-        //Ska gå att skriva ut hela datastrukturen i konsolen
-        //Kunna på kommando lägga till nästa primtal utifrån det högsta i listan
-        //Programmet avslutas när användaren bestämmer det.                                 OK
-        //Programmet ska kunna ta emot all form av input och hantera det.                   OK
-        //Tex felmeddelande vid felaktig input och sedan ny chans att skriva in en input    OK
-        //Kommentarer för hela programmet
-
         static void Main(string[] args)
         {
             Start();
@@ -26,28 +17,29 @@ namespace FirstAssignmentDatalogi
         {
             Console.WriteLine("Hello!");
             
-
-
             bool keepGoing = true;
+            var primeNumbers = new List<int>();
 
             while (keepGoing)
             {
                 Console.WriteLine("What would you like to do?");
                 Console.WriteLine("1. Add a number");
-                Console.WriteLine("2. Print all numbers added"); 
+                Console.WriteLine("2. Print all numbers added");
                 Console.WriteLine("3. Add next prime number");
                 Console.WriteLine("4. Exit");
                 string choice = Console.ReadLine();
+                Console.WriteLine();
 
                 switch (choice)
                 {
                     case "1":
-                        AddInput();
+                        AddInput(primeNumbers);
                         break;
                     case "2":
-                        PrintList();
+                        PrintList(primeNumbers);
                         break;
                     case "3":
+                        AddNextPrime(primeNumbers);
                         break;
                     case "4":
                         keepGoing = false;
@@ -62,18 +54,18 @@ namespace FirstAssignmentDatalogi
         /// <summary>
         /// Tar emot input där vi frågar efter en siffra
         /// </summary>
-        public static void AddInput()
+        public static void AddInput(List<int> primeNumbers)
         {
             Console.WriteLine("Please type a number: ");
             string answer = Console.ReadLine();
-            CheckIfCorrectInput(answer);
+            CheckIfCorrectInput(primeNumbers, answer);
         }
 
         /// <summary>
-        /// Kollar att inputen är en siffra
+        /// Kollar om inputen är en siffra som vi förväntat oss
         /// </summary>
         /// <param name="answer"></param>
-        public static void CheckIfCorrectInput(string answer)
+        public static void CheckIfCorrectInput(List<int> primeNumbers, string answer)
         {
             bool isNumber = int.TryParse(answer, out int i);
 
@@ -83,7 +75,7 @@ namespace FirstAssignmentDatalogi
 
                 if (isPrime)
                 {
-                    AddToList(i);
+                    AddToList(primeNumbers, i);
                 }
                 else
                 {
@@ -99,8 +91,7 @@ namespace FirstAssignmentDatalogi
 
         /// <summary>
         /// Kollar om siffran är ett primtal, annars skrivs ett meddelande ut
-        /// Hoppar över nr 1 då allt är delbart med det
-        /// Bryter loopen tidigt för att 
+        /// Hoppar över nr 1 då allt är delbart med det 
         /// </summary>
         /// <param name="number"></param>
         public static bool CheckIfPrimeNumber(int number)
@@ -126,12 +117,9 @@ namespace FirstAssignmentDatalogi
         /// Lägger till primtalet i en lista
         /// </summary>
         /// <param name="i"></param>
-        public static void AddToList(int i)
+        public static void AddToList(List<int> primeNumbers, int i)
         {
-            List<int> list = new List<int>();
-            list.Add(i);
-            Console.WriteLine("This is a prime number");
-
+            primeNumbers.Add(i);
         }
 
         /// <summary>
@@ -143,20 +131,61 @@ namespace FirstAssignmentDatalogi
         }
 
         /// <summary>
+        /// Räknar ut nästa primtal utifrån inputsiffran
+        /// </summary>
+        /// <param name="currentNumber"></param>
+        /// <returns></returns>
+        public static int GetNextPrime(int currentNumber)
+        {
+            bool foundPrime = false;
+
+            while (!foundPrime)
+            {
+                currentNumber++;
+                foundPrime = CheckIfPrimeNumber(currentNumber);
+            }
+
+            return currentNumber;
+        }
+
+        /// <summary>
+        /// Räknar ut högsta primtalet i listan och 
+        /// lägger till nästa primtal
+        /// </summary>
+        /// <param name="list"></param>
+        public static void AddNextPrime(List<int> list)
+        {
+            var sortedList = SortList(list);
+
+            var highestPrime = sortedList.Last();
+
+            var nextPrime = GetNextPrime(highestPrime);
+
+            AddToList(list, nextPrime);
+        }
+
+        /// <summary>
+        /// Sorterar en lista i storleksordning
+        /// </summary>
+        /// <param name="list"></param>
+        public static List<int> SortList(List<int> list)
+        {
+            var sortedList = new List<int>(list);
+
+            sortedList.Sort();
+
+            return sortedList;
+        }
+
+        /// <summary>
         /// Skriver ut listan med primtal
         /// </summary>
-        public static void PrintList()
+        public static void PrintList(List<int> list)
         {
-            /*
-            list.Sort();
             foreach(var item in list)
             {
                 Console.WriteLine(item);
             }
-            */
-            Console.WriteLine("Funkar");
         }
-        
     }
-
 }
